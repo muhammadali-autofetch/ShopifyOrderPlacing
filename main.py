@@ -21,6 +21,15 @@ app.secret_key = 'ali'
 STORE_CONFIG_PATH = current_dir + '/JsonFiles/store_config.json'
 ORDER_STATS_FILE = current_dir + '/JsonFiles/order_stats.json'
 
+# create if doesn't exist
+if not os.path.exists(current_dir + '/JsonFiles'):
+    os.makedirs(current_dir + '/JsonFiles')
+
+# Check if the store configuration file exists
+if not os.path.isfile(STORE_CONFIG_PATH):
+    with open(STORE_CONFIG_PATH, 'w') as f:
+        json.dump({}, f)
+
 with open(STORE_CONFIG_PATH) as f:
     STORE_CONFIG = json.load(f)
 
